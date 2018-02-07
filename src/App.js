@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import fire from './fire';
 
-import { Button, Input, Form } from 'semantic-ui-react'
+import { Form } from 'semantic-ui-react'
 
 class App extends Component {
   state = {
