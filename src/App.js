@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import fire from './fire';
 
+import { Button } from 'semantic-ui-react'
+
 class App extends Component {
   state = {
     messages: []
@@ -24,7 +26,7 @@ class App extends Component {
     return (
       <form onSubmit={this.addMessage.bind(this)}>
         <input type="text" ref={ el => this.inputEl = el }/>
-        <input type="submit" />
+        <Button type="submit">Submit</Button>
         <ul>
           { /* Render the list of messages */
             this.state.messages.map( message => <li key={message.id}>{message.text}</li> )
