@@ -28,7 +28,7 @@ const HomepageHeading = ({ mobile }) => (
   <Container text>
     <Header
       as='h1'
-      content='Imagine-a-Company'
+      content='Shared home ownership'
       inverted
       style={{
         fontSize: mobile ? '2em' : '4em',
@@ -39,7 +39,7 @@ const HomepageHeading = ({ mobile }) => (
     />
     <Header
       as='h2'
-      content='Do whatever you want when you want to.'
+      content='Co-own a home at a fraction of the cost, hassle-free.'
       inverted
       style={{
         fontSize: mobile ? '1.5em' : '1.7em',
@@ -69,12 +69,15 @@ HomepageHeading.propTypes = {
 class DesktopContainer extends Component {
   state = {}
 
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+
   hideFixedMenu = () => this.setState({ fixed: false })
   showFixedMenu = () => this.setState({ fixed: true })
 
   render() {
     const { children } = this.props
     const { fixed } = this.state
+    const { activeItem } = this.state
 
     return (
       <Responsive {...Responsive.onlyComputer}>
@@ -89,11 +92,10 @@ class DesktopContainer extends Component {
               size='large'
             >
               <Container>
-                <Menu.Item as='a' header>Project Name</Menu.Item>
-                <Menu.Item as='a' active>Features</Menu.Item>
-                <Menu.Item as='a'>How it works</Menu.Item>
-                <Menu.Item as='a'>FAQ</Menu.Item>
-                <Menu.Item as='a'>About</Menu.Item>
+                <Menu.Item as='a'>Housesplit</Menu.Item>
+                <Menu.Item name='howItWorks' active={activeItem === 'howItWorks'} onClick={this.handleItemClick} as='a'>How it works</Menu.Item>
+                <Menu.Item name='faq' active={activeItem === 'faq'} onClick={this.handleItemClick} as='a'>FAQ</Menu.Item>
+                <Menu.Item name='about' active={activeItem === 'about'} onClick={this.handleItemClick} as='a'>About</Menu.Item>
                 <Menu.Item position='right'>
                   <Button as='a' inverted={!fixed}>Log in</Button>
                   <Button as='a' inverted={!fixed} primary={fixed} style={{ marginLeft: '0.5em' }}>Sign Up</Button>
@@ -119,21 +121,23 @@ class MobileContainer extends Component {
 
   handleToggle = () => this.setState({ sidebarOpened: !this.state.sidebarOpened })
 
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+
   render() {
     const { children } = this.props
     const { sidebarOpened } = this.state
+    const { activeItem } = this.state
 
     return (
       <Responsive {...Responsive.onlyMobile}>
         <Sidebar.Pushable>
           <Sidebar as={Menu} animation='uncover' inverted vertical visible={sidebarOpened}>
-            <Menu.Item as='a'>Project Name</Menu.Item>
-            <Menu.Item as='a'>Features</Menu.Item>
-            <Menu.Item as='a'>How it works</Menu.Item>
-              <Menu.Item as='a'>FAQ</Menu.Item>
-                <Menu.Item as='a'>About</Menu.Item>
-            <Menu.Item as='a'>Log in</Menu.Item>
-            <Menu.Item as='a' primary>Sign Up</Menu.Item>
+            <Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick} as='a' header>Housesplit</Menu.Item>
+            <Menu.Item name='howItWorks' active={activeItem === 'howItWorks'} onClick={this.handleItemClick} as='a'>How it works</Menu.Item>
+            <Menu.Item name='faq' active={activeItem === 'faq'} onClick={this.handleItemClick} as='a'>FAQ</Menu.Item>
+            <Menu.Item name='about' active={activeItem === 'about'} onClick={this.handleItemClick} as='a'>About</Menu.Item>
+            <Menu.Item name='login' active={activeItem === 'login'} onClick={this.handleItemClick} as='a'>Log in</Menu.Item>
+            <Menu.Item name='signup' active={activeItem === 'signup'} onClick={this.handleItemClick} as='a'primary>Sign Up</Menu.Item>
           </Sidebar>
 
           <Sidebar.Pusher dimmed={sidebarOpened} onClick={this.handleToggle} style={{ minHeight: '100vh' }}>
@@ -283,49 +287,60 @@ const HomepageLayout = () => (
   </ResponsiveContainer>
 )
 
+// class MessagesDemo extends Component {
+//   state = {
+//     messages: []
+//   };
+//
+//   componentWillMount() {
+//     /* Create reference to messages in Firebase Database */
+//     let messagesRef = fire.database().ref('messages').orderByKey().limitToLast(100);
+//     messagesRef.on('child_added', snapshot => {
+//       /* Update React state when message is added at Firebase Database */
+//       let message = { text: snapshot.val(), id: snapshot.key };
+//       this.setState({ messages: [message].concat(this.state.messages) });
+//     })
+//   };
+//
+//   handleFormSubmit = (e) => {
+//     const message = this.refs.message.value;
+//     console.log(message);
+//     const messages = [...this.state.messages, message];
+//     this.setState({ messages: messages });
+//     /* Send the message to Firebase */
+//     fire.database().ref('messages').push(message);
+//     this.refs.message.value = ''; // <- clear the input
+//     e.preventDefault(); // <- prevent form submit from reloading the page
+//   };
+//
+//   render() {
+//     return (
+//       <div>
+//         <Form onSubmit={this.handleFormSubmit}>
+//           <Form.Field>
+//             <input
+//               ref='message'
+//               type='text'
+//               placeholder='Type a message...' />
+//           </Form.Field>
+//           <Form.Button type='submit'>Submit</Form.Button>
+//           <ul>
+//             { /* Render the list of messages */
+//               this.state.messages.map( message => <li key={message.id}>{message.text}</li> )
+//             }
+//           </ul>
+//         </Form>
+//       </div>
+//     );
+//   }
+// }
+
 class App extends Component {
-  state = {
-    messages: []
-  };
-
-  componentWillMount() {
-    /* Create reference to messages in Firebase Database */
-    let messagesRef = fire.database().ref('messages').orderByKey().limitToLast(100);
-    messagesRef.on('child_added', snapshot => {
-      /* Update React state when message is added at Firebase Database */
-      let message = { text: snapshot.val(), id: snapshot.key };
-      this.setState({ messages: [message].concat(this.state.messages) });
-    })
-  };
-
-  handleFormSubmit = (e) => {
-    const message = this.refs.message.value;
-    console.log(message);
-    const messages = [...this.state.messages, message];
-    this.setState({ messages: messages });
-    /* Send the message to Firebase */
-    fire.database().ref('messages').push(message);
-    this.refs.message.value = ''; // <- clear the input
-    e.preventDefault(); // <- prevent form submit from reloading the page
-  };
+  state = {};
 
   render() {
     return (
       <div>
-        <Form onSubmit={this.handleFormSubmit}>
-          <Form.Field>
-            <input
-              ref='message'
-              type='text'
-              placeholder='Type a message...' />
-          </Form.Field>
-          <Form.Button type='submit'>Submit</Form.Button>
-          <ul>
-            { /* Render the list of messages */
-              this.state.messages.map( message => <li key={message.id}>{message.text}</li> )
-            }
-          </ul>
-        </Form>
         <HomepageLayout></HomepageLayout>
       </div>
     );
