@@ -89,10 +89,11 @@ class DesktopContainer extends Component {
               size='large'
             >
               <Container>
-                <Menu.Item as='a' active>Home</Menu.Item>
-                <Menu.Item as='a'>Work</Menu.Item>
-                <Menu.Item as='a'>Company</Menu.Item>
-                <Menu.Item as='a'>Careers</Menu.Item>
+                <Menu.Item as='a' header>Project Name</Menu.Item>
+                <Menu.Item as='a' active>Features</Menu.Item>
+                <Menu.Item as='a'>How it works</Menu.Item>
+                <Menu.Item as='a'>FAQ</Menu.Item>
+                <Menu.Item as='a'>About</Menu.Item>
                 <Menu.Item position='right'>
                   <Button as='a' inverted={!fixed}>Log in</Button>
                   <Button as='a' inverted={!fixed} primary={fixed} style={{ marginLeft: '0.5em' }}>Sign Up</Button>
@@ -126,10 +127,11 @@ class MobileContainer extends Component {
       <Responsive {...Responsive.onlyMobile}>
         <Sidebar.Pushable>
           <Sidebar as={Menu} animation='uncover' inverted vertical visible={sidebarOpened}>
-            <Menu.Item as='a' active>Home</Menu.Item>
-            <Menu.Item as='a'>Work</Menu.Item>
-            <Menu.Item as='a'>Company</Menu.Item>
-            <Menu.Item as='a'>Careers</Menu.Item>
+            <Menu.Item as='a'>Project Name</Menu.Item>
+            <Menu.Item as='a'>Features</Menu.Item>
+            <Menu.Item as='a'>How it works</Menu.Item>
+              <Menu.Item as='a'>FAQ</Menu.Item>
+                <Menu.Item as='a'>About</Menu.Item>
             <Menu.Item as='a'>Log in</Menu.Item>
             <Menu.Item as='a' primary>Sign Up</Menu.Item>
           </Sidebar>

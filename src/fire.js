@@ -1,7 +1,7 @@
 import firebase from 'firebase';
 
-const env = 'production';
-// const env = 'production';
+const env = 'prod';
+// const env = 'dev';
 
 const devConfig = {
   apiKey: "AIzaSyDT4P0K7vKjikHupDEnNwWOcHISI_Z7s6Y",
@@ -21,7 +21,7 @@ const prodConfig = {
   messagingSenderId: "139452593418"
 };
 
-const config = process.env.NODE_ENV === 'production'
+const config = env === 'prod'
   ? prodConfig
   : devConfig;
 
