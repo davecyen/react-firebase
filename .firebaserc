@@ -1,5 +1,6 @@
 {
   "projects": {
-    "dev": "react-firebase-b84a7"
+    "dev": "react-firebase-b84a7",
+    "prod": "react-firebase-prod"
   }
 }
