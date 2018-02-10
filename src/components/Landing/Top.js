@@ -8,10 +8,10 @@ import {
 } from 'semantic-ui-react';
 
 /* eslint-disable react/no-multi-comp */
-/* Heads up! HomepageHeading uses inline styling, however it's not the best practice. Use CSS or styled components for
+/* Heads up! This uses inline styling, however it's not the best practice. Use CSS or styled components for
  * such things.
  */
-const HomepageHeading = ({ mobile }) => (
+const Top = ({ mobile }) => (
   <Container text>
     <Header
       as='h1'
@@ -41,12 +41,8 @@ const HomepageHeading = ({ mobile }) => (
   </Container>
 )
 
-HomepageHeading.propTypes = {
+Top.propTypes = {
   mobile: PropTypes.bool,
 }
 
-HomepageHeading.propTypes = {
-  mobile: PropTypes.bool,
-}
-
-export default HomepageHeading;
+export default Top;

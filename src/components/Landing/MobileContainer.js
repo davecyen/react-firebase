@@ -11,7 +11,7 @@ import {
   Sidebar,
 } from 'semantic-ui-react';
 
-import HomepageHeading from '../Header/HomepageHeading';
+import Top from './Top';
 
 class MobileContainer extends Component {
   state = {}
@@ -50,7 +50,7 @@ class MobileContainer extends Component {
                   </Menu.Item>
                 </Menu>
               </Container>
-              <HomepageHeading mobile />
+              <Top mobile />
             </Segment>
 
             {children}

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import {
@@ -10,8 +11,9 @@ import {
   Visibility,
 } from 'semantic-ui-react';
 
-import HomepageHeading from '../Header/HomepageHeading';
-
+import Top from './Top';
+import MenuItems from '../Navbar/MenuItems';
+import * as routes from '../../constants/routes';
 
 /* Heads up!
  * Neither Semantic UI, nor Semantic UI React don't offer a responsive navbar, hover it can be easily implemented.
@@ -20,15 +22,12 @@ import HomepageHeading from '../Header/HomepageHeading';
 class DesktopContainer extends Component {
   state = {}
 
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
-
   hideFixedMenu = () => this.setState({ fixed: false })
   showFixedMenu = () => this.setState({ fixed: true })
 
   render() {
     const { children } = this.props
     const { fixed } = this.state
-    const { activeItem } = this.state
 
     return (
       <Responsive {...Responsive.onlyComputer}>
@@ -42,18 +41,9 @@ class DesktopContainer extends Component {
               style={{ backgroundColor: fixed ? 'white' : ''}}
               size='large'
             >
-              <Container>
-                <Menu.Item as='a'>Housesplit</Menu.Item>
-                <Menu.Item name='howItWorks' active={activeItem === 'howItWorks'} onClick={this.handleItemClick} as='a'>How it works</Menu.Item>
-                <Menu.Item name='faq' active={activeItem === 'faq'} onClick={this.handleItemClick} as='a'>FAQ</Menu.Item>
-                <Menu.Item name='about' active={activeItem === 'about'} onClick={this.handleItemClick} as='a'>About</Menu.Item>
-                <Menu.Item position='right'>
-                  <Button as='a' inverted={!fixed}>Log in</Button>
-                  <Button as='a' inverted={!fixed} primary={fixed} style={{ marginLeft: '0.5em' }}>Sign Up</Button>
-                </Menu.Item>
-              </Container>
+              <MenuItems fixed={this.state.fixed}></MenuItems>
             </Menu>
-            <HomepageHeading />
+            <Top />
           </Segment>
         </Visibility>
 

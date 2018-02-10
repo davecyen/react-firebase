@@ -1,9 +1,18 @@
-import React, { Component } from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
+import React from 'react';
+import {
+  BrowserRouter as Router,
+  Route,
+} from 'react-router-dom';
 
-// import fire from './fire';
+import LandingPage from './Landing/LandingPage';
+import SignUpPage from './SignUp';
+import SignInPage from './SignIn';
+import PasswordForgetPage from './PasswordForget';
+import HomePage from './Home/HomePage';
+import AccountPage from './Account/AccountPage';
 
-import HomepageLayout from './Landing/HomepageLayout';
+import * as routes from '../constants/routes';
+import withAuthentication from './withAuthentication';
 
 // class MessagesDemo extends Component {
 //   state = {
@@ -53,16 +62,35 @@ import HomepageLayout from './Landing/HomepageLayout';
 //   }
 // }
 
-class App extends Component {
-  state = {};
-
-  render() {
-    return (
-      <div>
-        <HomepageLayout></HomepageLayout>
-      </div>
-    );
-  }
-}
+const App = () => (
+  <Router>
+    <div>
+      <Route
+        exact path={routes.LANDING}
+        component={LandingPage}
+      />
+      <Route
+        exact path={routes.SIGN_UP}
+        component={SignUpPage}
+      />
+      <Route
+        exact path={routes.SIGN_IN}
+        component={SignInPage}
+      />
+      <Route
+        exact path={routes.PASSWORD_FORGET}
+        component={PasswordForgetPage}
+      />
+      <Route
+        exact path={routes.HOME}
+        component={HomePage}
+      />
+      <Route
+        exact path={routes.ACCOUNT}
+        component={AccountPage}
+      />
+    </div>
+  </Router>
+);
 
 export default App;

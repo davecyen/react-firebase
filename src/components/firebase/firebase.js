@@ -1,7 +1,7 @@
 import * as firebase from 'firebase';
 
-const env = 'prod';
-// const env = 'dev';
+// const env = 'prod';
+const env = 'dev';
 
 const devConfig = {
   apiKey: "AIzaSyDT4P0K7vKjikHupDEnNwWOcHISI_Z7s6Y",
@@ -26,11 +26,12 @@ const config = env === 'prod'
   : devConfig;
 
 if (!firebase.apps.length) {
-  firebase.initializeApp(config);
+  var fire = firebase.initializeApp(config);
 }
 
 const auth = firebase.auth();
 
 export{
-  auth
+  auth,
+  fire
 };

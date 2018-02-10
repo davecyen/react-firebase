@@ -13,7 +13,7 @@ import {
 import ResponsiveContainer from './ResponsiveContainer';
 import Footer from '../Footer/Footer';
 
-const HomepageLayout = () => (
+const LandingPage = () => (
   <div>
     <ResponsiveContainer>
       <Segment style={{ padding: '8em 0em' }} vertical>
@@ -94,4 +94,4 @@ const HomepageLayout = () => (
   </div>
 )
 
-export default HomepageLayout;
+export default LandingPage;
